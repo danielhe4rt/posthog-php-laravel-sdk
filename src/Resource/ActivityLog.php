@@ -11,9 +11,9 @@ use Saloon\Http\Response;
 class ActivityLog extends Resource
 {
 	/**
-	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
+	 * @param int $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
 	 */
-	public function activityLogList(string $projectId): Response
+	public function activityLogList(int $projectId): Response
 	{
 		return $this->connector->send(new ActivityLogList($projectId));
 	}

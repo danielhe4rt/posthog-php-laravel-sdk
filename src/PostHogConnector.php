@@ -2,6 +2,7 @@
 
 namespace DanielHe4rt\PostHog;
 
+use DanielHe4rt\PostHog\Requests\Capture;
 use DanielHe4rt\PostHog\Resource\Actions;
 use DanielHe4rt\PostHog\Resource\ActivityLog;
 use DanielHe4rt\PostHog\Resource\Annotations;
@@ -37,7 +38,13 @@ use DanielHe4rt\PostHog\Resource\Subscriptions;
 use DanielHe4rt\PostHog\Resource\Surveys;
 use DanielHe4rt\PostHog\Resource\Users;
 use DanielHe4rt\PostHog\Resource\WebExperiments;
+use Saloon\Contracts\Body\HasBody;
+use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Request;
+use Saloon\Http\Response;
+use Saloon\Repositories\Body\JsonBodyRepository;
 
 /**
  * PostHog Connector
@@ -45,16 +52,42 @@ use Saloon\Http\Connector;
 class PostHogConnector extends Connector
 {
     public function __construct(
-        protected string            $apiKey,
-        protected PostHogRegionEnum $baseUrl,
+        protected PostHogServersEnum $server,
+        protected ?string            $apiKey,
+        protected ?string            $personalApiKey,
     )
     {
-        $this->headers()->add('Authorization', sprintf("Bearer %s", $this->apiKey));
+
+    }
+
+    public function send(HasBody|Request $request, ?MockClient $mockClient = null, ?callable $handleRetry = null): Response
+    {
+        if ($request instanceof HasBody) {
+            /* @var JsonBodyRepository $body */
+            $payloadWithApiKey = array_merge($request->body()->all(), [
+                'api_key' => $this->apiKey
+            ]);
+            $request->body()->set($payloadWithApiKey);
+            return parent::send($request, $mockClient, $handleRetry);
+        }
+
+        return parent::send($request, $mockClient, $handleRetry);
+    }
+
+
+    protected function defaultAuth(): TokenAuthenticator
+    {
+        return new TokenAuthenticator($this->personalApiKey);
+    }
+
+    public static function new(PostHogServersEnum $server, ?string $apiKey, ?string $personalApiKey): self
+    {
+        return new self($server, $apiKey, $personalApiKey);
     }
 
     public function resolveBaseUrl(): string
     {
-        return $this->baseUrl->value;
+        return $this->server->value;
     }
 
 
@@ -220,7 +253,7 @@ class PostHogConnector extends Connector
     }
 
 
-    public function query(): Query
+    public function queryApi(): Query
     {
         return new Query($this);
     }
@@ -265,5 +298,10 @@ class PostHogConnector extends Connector
     public function webExperiments(): WebExperiments
     {
         return new WebExperiments($this);
+    }
+
+    public function capture(array $payload): Response
+    {
+        return $this->send(new Capture($payload));
     }
 }
