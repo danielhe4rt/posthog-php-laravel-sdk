@@ -12,16 +12,19 @@ use Saloon\Http\Response;
 
 class Query extends Resource
 {
-	/**
-	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
-	 */
-	public function queryCreate(string $projectId, array $payload): Response
-	{
-		return $this->connector->send(new QueryCreate($projectId));
-	}
+    /**
+     * Sends a query to PostHog.
+     *
+     * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
+     * @url https://posthog.com/docs/api/query
+     */
+    public function query(string $projectId, array $payload): Response
+    {
+        return $this->connector->send(new QueryCreate($projectId, $payload));
+    }
 
 
-	/**
+    /**
 	 * @param string $id
 	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
 	 */
@@ -31,7 +34,7 @@ class Query extends Resource
 	}
 
 
-	/**
+    /**
 	 * @param string $id
 	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
 	 */
