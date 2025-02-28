@@ -1,0 +1,22 @@
+{
+    "name": "danielhe4rt/posthog",
+    "description": "An elegant Posthog SDK for PHP Developers",
+    "type": "library",
+    "require": {
+        "php": ">=8.2",
+        "saloonphp/saloon": "v3.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DanielHe4rt\\PostHog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "danielhe4rt",
+            "email": "danielhe4rt@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
