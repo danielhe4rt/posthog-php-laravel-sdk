@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b38fe81f9b3718d9f34aea2692fb1895",
+    "content-hash": "3888064f0b789522b35b00584f5713b5",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -542,16 +542,16 @@
         },
         {
             "name": "saloonphp/saloon",
-            "version": "v3.x-dev",
+            "version": "v3.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saloonphp/saloon.git",
-                "reference": "de1e0beae1c9720b353688f5bf6eb532cdbf882b"
+                "reference": "cbb1d7e27e3cde93cf77e0588360959bc53e5f27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saloonphp/saloon/zipball/de1e0beae1c9720b353688f5bf6eb532cdbf882b",
-                "reference": "de1e0beae1c9720b353688f5bf6eb532cdbf882b",
+                "url": "https://api.github.com/repos/saloonphp/saloon/zipball/cbb1d7e27e3cde93cf77e0588360959bc53e5f27",
+                "reference": "cbb1d7e27e3cde93cf77e0588360959bc53e5f27",
                 "shasum": ""
             },
             "require": {
@@ -583,7 +583,6 @@
                 "symfony/dom-crawler": "Required for the response dom() method.",
                 "symfony/var-dumper": "Required for default debugging drivers."
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -612,7 +611,7 @@
             ],
             "support": {
                 "issues": "https://github.com/saloonphp/saloon/issues",
-                "source": "https://github.com/saloonphp/saloon/tree/v3.11.0"
+                "source": "https://github.com/saloonphp/saloon/tree/v3.11.1"
             },
             "funding": [
                 {
@@ -620,7 +619,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-02T14:48:09+00:00"
+            "time": "2025-02-28T14:27:40+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -694,12 +693,12 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "saloonphp/saloon": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
+    "platform": {
+        "php": ">=8.2"
+    },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

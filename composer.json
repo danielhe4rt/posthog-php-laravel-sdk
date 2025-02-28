@@ -10,7 +10,7 @@
     "type": "library",
     "require": {
         "php": ">=8.2",
-        "saloonphp/saloon": "v3.x-dev"
+        "saloonphp/saloon": "v3.11.1"
     },
     "license": "MIT",
     "autoload": {
