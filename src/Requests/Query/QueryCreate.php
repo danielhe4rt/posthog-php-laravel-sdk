@@ -29,6 +29,12 @@ class QueryCreate extends Request implements HasBody
 	 */
 	public function __construct(
 		protected string $projectId,
+        protected array $payload
 	) {
 	}
+
+    public function defaultBody(): array
+    {
+        return $this->payload;
+    }
 }

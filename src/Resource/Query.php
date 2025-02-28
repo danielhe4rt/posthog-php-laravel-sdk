@@ -15,7 +15,7 @@ class Query extends Resource
 	/**
 	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
 	 */
-	public function queryCreate(string $projectId): Response
+	public function queryCreate(string $projectId, array $payload): Response
 	{
 		return $this->connector->send(new QueryCreate($projectId));
 	}

@@ -1,7 +1,7 @@
 {
     "name": "danielhe4rt/posthog",
     "description": "An elegant Posthog SDK for PHP Developers",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "keywords": [
         "posthog",
         "posthog sdk",
