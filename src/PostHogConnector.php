@@ -62,7 +62,7 @@ class PostHogConnector extends Connector
 
     public function send(HasBody|Request $request, ?MockClient $mockClient = null, ?callable $handleRetry = null): Response
     {
-        if ($request instanceof HasBody) {
+        if ($request instanceof Capture) {
             /* @var JsonBodyRepository $body */
             $payloadWithApiKey = array_merge($request->body()->all(), [
                 'api_key' => $this->apiKey
