@@ -24,18 +24,22 @@ class DashboardsCreateFromTemplateJsonCreate extends Request implements HasBody
 
 	protected Method $method = Method::POST;
 
-
 	public function resolveEndpoint(): string
 	{
 		return "/api/projects/{$this->projectId}/dashboards/create_from_template_json";
 	}
 
+    protected function defaultBody(): array
+    {
+        return $this->payload;
+    }
 
-	/**
+    /**
 	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
 	 */
 	public function __construct(
 		protected string $projectId,
+        protected array $payload
 	) {
 	}
 }

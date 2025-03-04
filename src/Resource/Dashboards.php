@@ -133,8 +133,8 @@ class Dashboards extends Resource
 	/**
 	 * @param string $projectId Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/.
 	 */
-	public function dashboardsCreateFromTemplateJsonCreate(string $projectId): Response
+	public function createFromJsonTemplate(string $projectId, array $payload): Response
 	{
-		return $this->connector->send(new DashboardsCreateFromTemplateJsonCreate($projectId));
+		return $this->connector->send(new DashboardsCreateFromTemplateJsonCreate($projectId, $payload));
 	}
 }
